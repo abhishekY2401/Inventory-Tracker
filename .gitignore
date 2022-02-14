@@ -1,0 +1,4 @@
+# ignore dependencies
+
+.env
+inventorytracker/__pycache__
