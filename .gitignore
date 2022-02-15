@@ -1,4 +1,6 @@
 # ignore dependencies
 
+venv
 .env
-inventorytracker/__pycache__
+__pycache__
+migrations
