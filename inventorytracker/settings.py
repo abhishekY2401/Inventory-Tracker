@@ -68,7 +68,7 @@ ROOT_URLCONF = 'inventorytracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath("templates"))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,8 +89,12 @@ WSGI_APPLICATION = 'inventorytracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'inventorydb',
+        'USER': 'dbadmin',
+        'PASSWORD': 'abhi123',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
