@@ -9,7 +9,8 @@
 6. Make a different branch (git branch new_branch) and go to that branch (git checkout new_branch)
 7. Make a virtual environment (python3 -m venv venv) in vscode terminal.
 8. Then activate it (venv\Scripts\activate.bat).
-9. Over!
+9. Lastly, create a secret key from <a href="https://miniwebtool.com/django-secret-key-generator/">here</a> and store this secret key in a new file (.env file)
+10. Over!
 
 ### To get familiar with the basics of Django 
 <a href="https://realpython.com/get-started-with-django-1/">Learn Django</a>
