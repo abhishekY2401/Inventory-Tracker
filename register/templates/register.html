@@ -17,35 +17,36 @@
       <div class="frame">
         <div>
           <form class="form-signup" action="" method="post" name="form">
+            {% csrf_token %}
             <label for="fullname">Full name</label>
             <input
               class="form-styling"
               type="text"
               name="fullname"
-              placeholder=""
+              placeholder="username"
             />
             <label for="email">Email</label>
             <input
               class="form-styling"
               type="text"
               name="email"
-              placeholder=""
+              placeholder="email"
             />
             <label for="password">Password</label>
             <input
               class="form-styling"
-              type="text"
+              type="password"
               name="password"
-              placeholder=""
+              placeholder="password"
             />
-            <label for="confirmpassword">Confirm password</label>
+            <label for="confirmpassword">Confirm Password</label>
             <input
               class="form-styling"
-              type="text"
+              type="password"
               name="confirmpassword"
-              placeholder=""
+              placeholder="confirm password"
             />
-            <input type="button" />
+            <input type="submit" />
           </form>
         </div>
 
