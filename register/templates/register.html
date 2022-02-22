@@ -1,7 +1,6 @@
-{% block content %} {% load crispy_forms_tags %}
-
+{% load static %} {% load crispy_forms_tags %} {% include 'navbar.html' %}
 <div class="container">
-  <h1>Register</h1>
+  <h1>SIGNUP</h1>
   <form method="POST">
     {% csrf_token %} {{form.username.label}} {{form.username}}
     {{form.email.label}} {{form.email}} {{form.password1.label}}
@@ -10,5 +9,3 @@
     <button class="btn btn-primary" type="submit">Register</button>
   </form>
 </div>
-
-{% endblock %}
