@@ -11,6 +11,13 @@
 
   <body>
     {% include 'navbar.html' %}
-    <main>{% block content %} {% endblock %}</main>
+    <main>
+      {% block content %}
+        <div class="cont-1">
+          <h2 id="aim">One Stop Solution <br>To Track all the Imports</h2>
+          <img id="trackImg" src={% static '/images/import_tracking.jpg' %} alt="import"></img>
+        </div>
+      {% endblock %}
+    </main>
   </body>
 </html>
