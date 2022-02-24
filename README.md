@@ -1,6 +1,7 @@
 # Inventory Tracker System
 
 ### To setup the project
+
 1. <a href="https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe">Install Python</a> (If installed ignore this step).
 2. Then install django. (pip install django)
 3. Then clone the repository in git bash. (git clone repo_url)
@@ -11,5 +12,6 @@
 8. Then activate it (venv\Scripts\activate.bat).
 9. Over!
 
-### To get familiar with the basics of Django 
+### To get familiar with the basics of Django
+
 <a href="https://realpython.com/get-started-with-django-1/">Learn Django</a>
