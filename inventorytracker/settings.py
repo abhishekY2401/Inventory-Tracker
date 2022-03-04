@@ -51,7 +51,10 @@ INSTALLED_APPS = [
     'crispy_forms',
     'dashboard.apps.DashboardConfig',
     'register.apps.RegisterConfig',
-    'homepage.apps.HomepageConfig'
+    'homepage.apps.HomepageConfig',
+    'order.apps.OrderConfig',
+    'product.apps.ProductConfig',
+    'login.apps.LoginConfig'
 ]
 
 MIDDLEWARE = [
@@ -82,6 +85,8 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/dashboard'
+
 WSGI_APPLICATION = 'inventorytracker.wsgi.application'
 
 
@@ -91,9 +96,9 @@ WSGI_APPLICATION = 'inventorytracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'inventorydb',
-        'USER': 'dbadmin',
-        'PASSWORD': 'abhi123',
+        'NAME': 'inventory_tracker',  # name of database in ur local system
+        'USER': 'root',
+        'PASSWORD': 'Dinesh$484',
         'HOST': 'localhost',
         'PORT': '3306',
     }
