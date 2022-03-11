@@ -4,5 +4,5 @@ from order.views import orderPage
 
 urlpatterns = [
     path('order/', orderPage, name="order"),
-    path('create/', addOrderPage, name="addOrders")
+    path('order/create/', addOrderPage, name="addOrders")
 ]
