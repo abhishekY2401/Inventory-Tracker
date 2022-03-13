@@ -1,0 +1,49 @@
+{% load static %} {% load crispy_forms_tags %}
+
+<head>
+  <title>{% block title %}Signup{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{% static '/css/register.css' %}" />
+</head>         
+<div class="signup">
+  <div class="logo">
+    <a href={% url 'homepage' %} id="logo">Import.</a>
+  </div>
+  <div class="container">
+    <h1 id="sign-header">SIGNUP</h1>
+
+    <div class="input-box">
+      <form method="POST">
+        {% csrf_token %} 
+        <div class="input-username">
+          <div class="user">
+            <span><i class="bi bi-person-circle"></i></span>
+            {{form.username}}
+          </div>
+        </div>
+        <div class="input-email">
+          <div class="email">
+            <span><i class="bi bi-envelope"></i></span>
+            {{form.email}}
+          </div>
+        </div>
+        <div class="input-password">
+          <div class="pass">
+            <span><i class="bi bi-lock-fill"></i></span>
+            {{form.password1}}
+          </div>
+        </div>
+        <div class="input-confirm-password">
+          <div class="confirm-pass">
+            <span><i class="bi bi-lock-fill"></i></span>
+            {{form.password2}}
+          </div>
+        </div>
+
+        <div class="btn-center">
+          <button class="btn-primary" type="submit">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

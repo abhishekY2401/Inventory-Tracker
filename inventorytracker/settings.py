@@ -50,7 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'dashboard.apps.DashboardConfig',
-    'register.apps.RegisterConfig'
+    'register.apps.RegisterConfig',
+    'homepage.apps.HomepageConfig',
+    'order.apps.OrderConfig',
+    'product.apps.ProductConfig',
+    'login.apps.LoginConfig'
 ]
 
 MIDDLEWARE = [
@@ -68,7 +72,7 @@ ROOT_URLCONF = 'inventorytracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath("templates"))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,6 +85,8 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/dashboard'
+
 WSGI_APPLICATION = 'inventorytracker.wsgi.application'
 
 
@@ -89,8 +95,12 @@ WSGI_APPLICATION = 'inventorytracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'inventory_tracker',  # name of database in ur local system
+        'USER': 'root',
+        'PASSWORD': 'Dinesh$484',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -130,6 +140,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+MEDIA_URL = '/images/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

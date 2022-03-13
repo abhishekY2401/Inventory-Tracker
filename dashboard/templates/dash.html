@@ -1,0 +1,23 @@
+{% load static %}
+
+<head>
+  <title>{% block title %}Dashboard{% endblock %}</title>
+  <link rel="stylesheet" href="{% static '/css/dash.css' %}" />
+  <link rel="stylesheet" href="{% static '/css/home.css' %}" />
+</head>
+<body>
+  {% include 'navdash.html' %}
+  <div class="main-dash">
+    {% block content %}
+    <div class="total imports">
+      <p>Total Imports from abhishek </p>
+    </div>
+    <div class="current imports">
+      <p>Current Imports</p>
+    </div>
+    <div class="pending imports">
+      <p>Pending Imports</p>
+    </div>
+    {% endblock %}
+  </div>
+</body>

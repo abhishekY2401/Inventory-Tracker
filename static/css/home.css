@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#logo {
+    font-size: 2rem;
+    font-family: 'Readex Pro', sans-serif;
+    text-decoration: none;
+    color: #383838;
+    margin-left: 5rem;
+}
+
+#dot {
+    font-size: 2rem;
+} 
+
+.sign {
+    font-size: 1.5rem;
+    font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+    color: #383838;
+    margin-left: 56rem;
+}
+
+.log {
+    font-size: 1.5rem;
+    font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+    color: #383838;
+    margin-left: 4rem;
+}
+
+.navbar {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+#trackImg {
+    width: 30%;
+    height: 20rem;
+    margin: 70px;
+    mix-blend-mode: darken;
+}
+
+.cont-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 88vh;
+    background-color: #2FF3AD;
+}
+
+#aim {
+    font-family: 'Readex Pro',sans-serif;
+}
+
