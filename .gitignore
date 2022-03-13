@@ -1,7 +1,7 @@
 # ignore dependencies
-
+.vscode
 venv
 .env
 __pycache__
 migrations
-.vscode
+.idea
