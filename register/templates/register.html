@@ -17,25 +17,25 @@
         {% csrf_token %} 
         <div class="input-username">
           <div class="user">
-            <span><i class="bi bi-person-circle"></i></span>
+            <span class="icon"><i class="bi bi-person-circle"></i></span>
             {{form.username}}
           </div>
         </div>
         <div class="input-email">
           <div class="email">
-            <span><i class="bi bi-envelope"></i></span>
+            <span class="icon"><i class="bi bi-envelope"></i></span>
             {{form.email}}
           </div>
         </div>
         <div class="input-password">
           <div class="pass">
-            <span><i class="bi bi-lock-fill"></i></span>
+            <span class="icon"><i class="bi bi-lock-fill"></i></span>
             {{form.password1}}
           </div>
         </div>
         <div class="input-confirm-password">
           <div class="confirm-pass">
-            <span><i class="bi bi-lock-fill"></i></span>
+            <span class="icon"><i class="bi bi-lock-fill"></i></span>
             {{form.password2}}
           </div>
         </div>
@@ -44,6 +44,11 @@
           <button class="btn-primary" type="submit">Register</button>
         </div>
       </form>
+
+      {{form.errors}}
+      <div>
+        Already have an account?<a href={% url 'login' %}>Login</a>
+      </div>
     </div>
   </div>
 </div>
