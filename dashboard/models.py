@@ -26,6 +26,11 @@ class Product(models.Model):
         return self.product_name
 
 
+class Vendor(models.Model):
+    name = models.CharField(max_length=255, null=True)
+    email_id = models.EmailField('Email', max_length=50)
+
+
 class Order(models.Model):
     STATUS = (
         ('Pending', 'Pending'),
@@ -33,7 +38,7 @@ class Order(models.Model):
     )
 
     order_id = models.AutoField("Order_ID", primary_key=True)
-    company_name = models.CharField(max_length=255, null=True)
+    vendor = models.ForeignKey(Vendor, null=True, on_delete=models.SET_NULL)
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     customer = models.ForeignKey(
         Customer, null=True, on_delete=models.SET_NULL)

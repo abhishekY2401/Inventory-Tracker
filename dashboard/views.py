@@ -23,3 +23,17 @@ def orderPage(request):
 def detailedOrderPage(request, pk):
     order = Order.objects.get(id=pk)
     return render(request, 'orderDetails.html')
+
+
+def createOrder(request):
+    if request.method == 'POST':
+        if request.POST.get('title') and request.POST.get('content'):
+            order = Order()
+            order.title = request.POST.get('title')
+            order.content = request.POST.get('content')
+            order.save()
+
+            return render(request, 'posts/create.html')
+
+    else:
+        return render(request, 'posts/create.html')

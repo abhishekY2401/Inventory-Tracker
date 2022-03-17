@@ -1,10 +1,83 @@
+{% load static %}
+
+<head>
+  <title>{% block title %}Create Order{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{% static '/css/addorder.css' %}" />
+</head>
+
+<body>
 {% block content %}
 <div class="create-order">
-  <h1>CREATE ORDER</h1>
-  <button>SAVE</button>
-  <button>CANCEL</button>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="nav-order">
+      <h1>CREATE ORDER</h1>
+      <button type="submit">SAVE</button>
+      <a href={% url 'dashboard:order' %}>CANCEL</a>
+    </div>
+
+    <div class="order-fields">
+      <h2>ORDER INFORMATION</h2>
+      <div class="inputs">
+        <label>Order ID</label>
+        <input type="text" required />
+      </div>
+      <div class="inputs">
+        <label>Vendor Name</label>
+        <input type="text" required />
+      </div>
+      <div class="inputs">
+        <label>Date</label>
+        <input type="text" required />
+      </div>
+      <div class="inputs">
+        <label for="status">Status</label>
+        <select name="status" id="status">
+          <option value="pending">Pending</option>
+          <option value="delivered">Delivered</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="customer-fields">
+      <h2>CUSTOMER INFORMATION</h2>
+      <div class="inputs">
+        <label>Customer Name</label>
+        <input type="text" required />
+      </div>
+      <div class="inputs">
+        <label>Phone Number</label>
+        <input type="text" required />
+      </div>
+      <div class="inputs">
+        <label>Email ID</label>
+        <input type="email" required />
+      </div>
+      <div class="inputs">
+        <label>Address</label>
+        <input type="text" required />
+      </div>
+    </div>
+
+    <div class="product-fields">
+      <h2>ITEM LIST</h2>
+      <div>
+        <label>Item</label>
+        <input type="text" required />
+        <label>Unit</label>
+        <select name="unit" id="unit">
+          <option value="Kilogram">Kg</option>
+          <option value="Litres">L</option>
+        </select>
+        <label>Quantity</label>
+        <input type="number" required />
+        <label>Price</label>
+        <input type="text" required />
+        <button class="add-item">Add</button>
+      </div>
+    </div>
+  </form>
 </div>
-
-<div>{{form}}</div>
-
 {% endblock %}
+</body>
