@@ -6,34 +6,35 @@
   <link rel="stylesheet" href="{% static '/css/addorder.css' %}" />
 </head>
 
-<body>
 {% block content %}
 <div class="create-order">
-  <form method="POST">
+  <form method="POST" action="order_submission/">
     {% csrf_token %}
     <div class="nav-order">
-      <h1>CREATE ORDER</h1>
-      <button type="submit">SAVE</button>
-      <a href={% url 'dashboard:order' %}>CANCEL</a>
+      <label id="create">CREATE ORDER</label>
+      <div class="btns">
+      <button type="submit" class="save">SAVE</button>
+      <a href={% url 'dashboard:order' %} class="cancel">CANCEL</a>
+      </div>
     </div>
 
     <div class="order-fields">
       <h2>ORDER INFORMATION</h2>
-      <div class="inputs">
+      <div class="inputs-field">
         <label>Order ID</label>
-        <input type="text" required />
+        <input type="text" class="box-text" name="order-id" required />
       </div>
-      <div class="inputs">
+      <div class="inputs-field">
         <label>Vendor Name</label>
-        <input type="text" required />
+        <input type="text" class="box-text" name="vendor-name" required />
       </div>
-      <div class="inputs">
+      <div class="inputs-field">
         <label>Date</label>
-        <input type="text" required />
+        <input type="text" class="box-text" name="date" required />
       </div>
-      <div class="inputs">
+      <div class="inputs-field">
         <label for="status">Status</label>
-        <select name="status" id="status">
+        <select name="status" class="box-text" name="status">
           <option value="pending">Pending</option>
           <option value="delivered">Delivered</option>
         </select>
@@ -42,21 +43,21 @@
 
     <div class="customer-fields">
       <h2>CUSTOMER INFORMATION</h2>
-      <div class="inputs">
+      <div class="inputs-field">
         <label>Customer Name</label>
-        <input type="text" required />
+        <input type="text" class="box-text" name="cust-name" required />
       </div>
-      <div class="inputs">
+      <div class="inputs-field">
         <label>Phone Number</label>
-        <input type="text" required />
+        <input type="text" class="box-text" name="phone-no" required />
       </div>
-      <div class="inputs">
+      <div class="inputs-field">
         <label>Email ID</label>
-        <input type="email" required />
+        <input type="email" class="box-text" name="email-id" required />
       </div>
-      <div class="inputs">
+      <div class="inputs-field">
         <label>Address</label>
-        <input type="text" required />
+        <input type="text" class="box-text" name="address" required />
       </div>
     </div>
 
@@ -64,20 +65,19 @@
       <h2>ITEM LIST</h2>
       <div>
         <label>Item</label>
-        <input type="text" required />
+        <input type="text" class="box-text" name="item-name" required />
         <label>Unit</label>
-        <select name="unit" id="unit">
+        <select name="unit" class="box-text" name="unit">
           <option value="Kilogram">Kg</option>
           <option value="Litres">L</option>
         </select>
         <label>Quantity</label>
-        <input type="number" required />
+        <input type="number" class="box-text" name="quantity" required />
         <label>Price</label>
-        <input type="text" required />
+        <input type="text" class="box-text" name="price" required />
         <button class="add-item">Add</button>
       </div>
     </div>
   </form>
 </div>
 {% endblock %}
-</body>
