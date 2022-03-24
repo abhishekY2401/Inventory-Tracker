@@ -1,38 +1,36 @@
+from unittest.mock import DEFAULT
 from django.db import models
 
 # Create your models here.
 
-
 class Customer(models.Model):
-    customer_id = models.IntegerField('Customer_ID')
-    customer_name = models.CharField(max_length=255, null=True)
+    customer_name = models.CharField(
+        max_length=255, default="unknown customer", blank=True)
     address = models.TextField('Address', max_length=255)
     phone_no = models.CharField(max_length=255, null=True)
     email_id = models.EmailField('Email', max_length=50)
 
     def __str__(self):
-        return self.customer_name
+        return str(self.customer_name)
 
 
 class Product(models.Model):
-    product_id = models.IntegerField("Product_ID")
-    product_name = models.CharField(max_length=255, null=True)
-    category = models.CharField(max_length=255, null=True)
+    product_name = models.CharField(max_length=255, null=True, blank=True)
+    category = models.CharField(max_length=255, null=True, blank=True)
     unit = models.CharField(max_length=255, null=True)
     quantity = models.IntegerField("Quantity")
     price = models.FloatField("Price", null=True)
 
     def __str__(self):
-        return self.product_name
+        return str(self.product_name)
 
 
 class Vendor(models.Model):
-    vendor_id = models.IntegerField("Vendor_ID", null=True)
-    vendor_name = models.CharField(max_length=255, null=True)
-    email_id = models.EmailField('Email', max_length=50)
+    vendor_name = models.CharField(max_length=255, null=True, blank=True)
+    email_id = models.EmailField('Email', max_length=50, null=True)
 
     def __str__(self):
-        return self.vendor_name
+        return str(self.vendor_name)
 
 
 class Order(models.Model):
@@ -42,14 +40,14 @@ class Order(models.Model):
     )
 
     order_id = models.AutoField("Order_ID", primary_key=True)
-    vendor = models.ForeignKey(Vendor, null=True, on_delete=models.SET_NULL)
     product = models.ManyToManyField(Product)
     customer = models.ForeignKey(
         Customer, null=True, on_delete=models.SET_NULL)
-    date = models.DateTimeField(auto_now_add=True, null=True)
+    vendor = models.ForeignKey(Vendor, null=True, on_delete=models.SET_NULL)
+    date = models.DateField(auto_now_add=True, null=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
-    invoice_no = models.IntegerField("Invoice_No", unique=True)
+    invoice_no = models.IntegerField("Invoice_No", unique=True, null=True)
     invoice = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return self.company_name
+        return str(self.order_id)
