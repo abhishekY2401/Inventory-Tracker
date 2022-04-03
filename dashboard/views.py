@@ -43,10 +43,10 @@ def order_submission(request):
         order.date = request.POST.get('date')
         order.status = request.POST.get('status')
         order.save()
-        
+
         order.product.add(product)
-        order.customer.add(cust)
-        order.vendor.add(vendor)
+        order.customer = cust
+        order.vendor = vendor
 
         return redirect('dashboard:order')
 
@@ -54,7 +54,9 @@ def order_submission(request):
 
 
 def orderPage(request):
-    return render(request, 'order.html')
+    order = Order.objects.all()
+    
+    return render(request, 'order.html', {'orders': order})
 
 
 def detailedOrderPage(request, pk):

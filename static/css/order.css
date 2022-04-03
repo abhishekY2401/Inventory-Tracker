@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap');
+
+.add-orders {
+    text-decoration: none;
+    padding: 10px;
+    color: #fff;
+    background-color: rgb(10, 248, 109);
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: 800;
+    font-family: 'Vazirmatn', sans-serif;
+}
+
+#orders {
+    font-size: 40px;
+    text-align:center;
+    margin-top: 40px;
+    font-family: 'Oswald', sans-serif;
+    color: #282828;
+}

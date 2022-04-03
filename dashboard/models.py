@@ -44,7 +44,7 @@ class Order(models.Model):
     customer = models.ForeignKey(
         Customer, null=True, on_delete=models.SET_NULL)
     vendor = models.ForeignKey(Vendor, null=True, on_delete=models.SET_NULL)
-    date = models.DateField(auto_now_add=True, null=True)
+    date = models.DateField(null=True)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
     invoice_no = models.IntegerField("Invoice_No", unique=True, null=True)
     invoice = models.ImageField(null=True, blank=True)
