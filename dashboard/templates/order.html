@@ -9,7 +9,34 @@
 {% block content %}
 <div>
     {% include 'navdash.html' %}
-    <h2 id="orders">Orders</h2>
-    <a href={% url 'dashboard:addOrders' %} class="add-orders">Create Order</a>
+
+    <div class="warehouse-order">
+      <h2 id="orders">Orders</h2>
+
+      <a href={% url 'dashboard:addOrders' %} class="add-orders">Create Order</a>
+
+      <table>
+        <tr>
+          <th>Order ID</th>
+          <th>Vendor</th>
+          <th>Customer</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Invoice Number</th>
+        </tr>
+
+        {% for i in order %}
+          <tr>
+            <td>{{i.order_id}}</td>
+            <td>{{i.vendor}}</td>
+            <td>{{i.customer}}</td>
+            <td>{{i.date}}</td>
+            <td>{{i.status}}</td>
+            <td>{{i.invoice_no}}</td>
+
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
 </div>
 {% endblock %}

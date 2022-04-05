@@ -55,8 +55,13 @@ def order_submission(request):
 
 def orderPage(request):
     order = Order.objects.all()
-    
-    return render(request, 'order.html', {'orders': order})
+    vendor = Vendor.objects.all()
+    product = Product.objects.all()
+    customer = Customer.objects.all()
+
+    context = {'order': order, 'vendors': vendor,
+               'products': product, 'customers': customer}
+    return render(request, 'order.html', context)
 
 
 def detailedOrderPage(request, pk):
