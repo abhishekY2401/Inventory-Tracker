@@ -4,14 +4,26 @@
 * {
     margin: 0;
     padding: 0;
+    max-width: 100%;
 }
 
 .warehouse-order {
     width: 100%;
-    height: 100px;
+    height: 200px;
 }
 
-.add-orders {
+hr {
+    width: 87rem;
+    margin-left: 3rem;
+    margin-top: 30px;
+    color:#282828;
+}
+
+.add {
+    margin-top: 30px;
+}
+
+.warehouse-order > a {
     text-decoration: none;
     padding: 10px;
     color: #fff;

@@ -12,8 +12,24 @@
 
     <div class="warehouse-order">
       <h2 id="orders">Orders</h2>
+      <hr />
+      <div>
+        <input type="text" name="order-id" placeholder="Search by id"/>
+        <input type="date" name="order-date" />
 
-      <a href={% url 'dashboard:addOrders' %} class="add-orders">Create Order</a>
+        <select name="status" name="status">
+          <option value="pending">Pending</option>
+          <option value="delivered">Delivered</option>
+        </select>
+
+        <input type="button" value="Filter"/>
+
+
+        <div class="add">
+          <a href={% url 'dashboard:addOrders' %} class="add-orders">Create Order</a>
+        </div>
+
+      </div>
 
       <table>
         <tr>
@@ -33,7 +49,6 @@
             <td>{{i.date}}</td>
             <td>{{i.status}}</td>
             <td>{{i.invoice_no}}</td>
-
           </tr>
         {% endfor %}
       </table>
