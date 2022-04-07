@@ -20,10 +20,10 @@ hr {
 }
 
 .add {
-    margin-top: 30px;
+    margin-top: -25px;
 }
 
-.warehouse-order > a {
+.add-orders {
     text-decoration: none;
     padding: 10px;
     color: #fff;
@@ -41,4 +41,14 @@ hr {
     margin-top: 40px;
     font-family: 'Oswald', sans-serif;
     color: #282828;
+}
+
+#filters {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+table {
+    margin-top: 60px;
+    margin-left: 60px;
 }

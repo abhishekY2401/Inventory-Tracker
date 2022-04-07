@@ -47,6 +47,7 @@ def order_submission(request):
         order.product.add(product)
         order.customer = cust
         order.vendor = vendor
+        order.save()
 
         return redirect('dashboard:order')
 
