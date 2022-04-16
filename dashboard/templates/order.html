@@ -14,16 +14,15 @@
       <h2 id="orders">Orders</h2>
       <hr />
       <div id="filters">
-        <input type="text" name="order-id" placeholder="Search by id"/>
-        <input type="date" name="order-date" />
+        <input type="text" name="order-id" placeholder="Search by id" class="id-text"/>
+        <input type="date" name="order-date" class="date-input"/>
 
-        <select name="status" name="status">
+        <select name="status" name="status" class="options">
           <option value="pending">Pending</option>
           <option value="delivered">Delivered</option>
         </select>
 
-        <input type="button" value="Filter"/>
-
+        <input type="button" value="Filter" class="btn-filter"/>
 
         <div class="add">
           <a href={% url 'dashboard:addOrders' %} class="add-orders">Create Order</a>
@@ -39,15 +38,16 @@
           <th>Date</th>
           <th>Status</th>
           <th>Invoice Number</th>
+          <th>Amount</th>
         </tr>
 
         {% for i in order %}
           <tr>
-            <td>{{i.order_id}}</td>
+            <td><a href="/dashboard/order/{{i.order_id}}">{{i.order_id}}</a></td>
             <td>{{i.vendor}}</td>
             <td>{{i.customer}}</td>
             <td>{{i.date}}</td>
-            <td>{{i.status}}</td>
+            <td class="status">{{i.status}}</td>
             <td>{{i.invoice_no}}</td>
           </tr>
         {% endfor %}

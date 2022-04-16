@@ -21,19 +21,23 @@
     <div class="order-fields">
       <h2>ORDER INFORMATION</h2>
       <div class="inputs-field">
-        <label>Order ID</label>
+        <label><span>*</span>Order ID</label>
         <input type="text" class="box-text" name="order-id" required />
       </div>
+      <div>
+        <label><span>*</span>Invoice Number</label>
+        <input type="text" class="box-text" name="invoice_no" required/>
+      </div>
       <div class="inputs-field">
-        <label>Vendor Name</label>
+        <label><span>*</span>Vendor Name</label>
         <input type="text" class="box-text" name="vendor-name" required />
       </div>
       <div class="inputs-field">
-        <label>Date</label>
+        <label><span>*</span>Date</label>
         <input type="date" class="box-text" name="date" required />
       </div>
       <div class="inputs-field">
-        <label for="status">Status</label>
+        <label for="status"><span>*</span>Status</label>
         <select name="status" class="box-text" name="status">
           <option value="pending">Pending</option>
           <option value="delivered">Delivered</option>
@@ -44,19 +48,19 @@
     <div class="customer-fields">
       <h2>CUSTOMER INFORMATION</h2>
       <div class="inputs-field">
-        <label>Customer Name</label>
+        <label><span>*</span>Customer Name</label>
         <input type="text" class="box-text" name="cust-name" required />
       </div>
       <div class="inputs-field">
-        <label>Phone Number</label>
+        <label><span>*</span>Phone Number</label>
         <input type="text" class="box-text" name="phone-no" required />
       </div>
       <div class="inputs-field">
-        <label>Email ID</label>
+        <label><span>*</span>Email ID</label>
         <input type="email" class="box-text" name="email-id" required />
       </div>
       <div class="inputs-field">
-        <label>Address</label>
+        <label><span>*</span>Address</label>
         <input type="text" class="box-text" name="address" required />
       </div>
     </div>
@@ -64,18 +68,18 @@
     <div class="product-fields">
       <h2>ITEM LIST</h2>
       <div>
-        <label>Item</label>
+        <label><span>*</span>Item</label>
         <input type="text" class="box-text" name="item-name" required />
-        <label>Unit</label>
+        <label><span>*</span>Unit</label>
         <select name="unit" class="box-text" name="unit">
           <option value="Kilogram">Kg</option>
           <option value="Litres">L</option>
         </select>
-        <label>Quantity</label>
+        <label><span>*</span>Quantity</label>
         <input type="number" class="box-text" name="quantity" required />
-        <label>Price</label>
+        <label><span>*</span>Price</label>
         <input type="text" class="box-text" name="price" required />
-        <label>Category</label>
+        <label><span>*</span>Category</label>
         <input type="text" class="box-text" name="category" required />
         <button class="add-item">Add</button>
       </div>

@@ -42,6 +42,7 @@ def order_submission(request):
         order.order_id = request.POST.get('order-id')
         order.date = request.POST.get('date')
         order.status = request.POST.get('status')
+        order.invoice_no = request.POST.get('invoice_no')
         order.save()
 
         order.product.add(product)
@@ -66,5 +67,7 @@ def orderPage(request):
 
 
 def detailedOrderPage(request, pk):
-    order = Order.objects.get(id=pk)
-    return render(request, 'orderDetails.html')
+    order = Order.objects.get(order_id=pk)
+    context = {'order': order}
+
+    return render(request, 'orderDetails.html', context)

@@ -48,7 +48,57 @@ hr {
     margin-left: 50px;
 }
 
+.date-input,
+.id-text,
+.options {
+    width: 20%;
+    padding: 8px 10px;
+    margin: 8px 0;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    font-weight: 600;
+}
+
+.btn-filter {
+    text-decoration: none;
+    padding: 9px;
+    color: #fff;
+    background-color: rgb(10, 248, 109);
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 800;
+    font-family: 'Vazirmatn', sans-serif;
+    border: none;
+    margin-left: 1rem;
+}
+
+#filters > input:hover {
+    border: 3px solid #555;
+}
+
 table {
+    border: 1px solid #181818;
     margin-top: 60px;
     margin-left: 60px;
+    border-collapse: collapse;
+    text-align: left;
+    overflow: hidden;
+    background-color: #efefef;
+    padding: 2rem 5rem;
+}
+
+tr {
+    border-bottom: 1px solid #282828;
+}
+
+th {
+    font-size: 1.2rem;
+    padding: 2rem;
+}
+
+td {
+    text-align: center;
+    padding: 1rem 2rem;
 }
