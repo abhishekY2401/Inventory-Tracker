@@ -1,3 +1,4 @@
+from itertools import count
 from math import prod
 from django.shortcuts import render, redirect
 from .forms import OrderForm
@@ -9,15 +10,19 @@ from .models import *
 
 def dashboardPage(request):
     order = Order.objects.all()
-    vendor = Vendor.objects.all()
-    product = Product.objects.all()
-    customer = Customer.objects.all()
 
     order_count = Order.objects.count()
     print(order_count)
 
-    context = {'order': order, 'vendors': vendor,
-               'product': product, 'customers': customer, 'order_count': order_count}
+    delivered_order = Order.objects.filter(status="delivered")
+    count_delivered = delivered_order.count()
+    print(count_delivered)
+
+    pending_order = Order.objects.filter(status="pending")
+    count_pending = pending_order.count()
+    print(count_pending)
+
+    context = {'order': order, 'order_count': order_count, 'deliver_order': count_delivered, 'pending_order': count_pending}
 
     return render(request, 'dash.html', context)
 
