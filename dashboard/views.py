@@ -1,3 +1,4 @@
+from math import prod
 from django.shortcuts import render, redirect
 from .forms import OrderForm
 from django.contrib.auth.decorators import login_required
@@ -7,7 +8,18 @@ from .models import *
 
 
 def dashboardPage(request):
-    return render(request, 'dash.html')
+    order = Order.objects.all()
+    vendor = Vendor.objects.all()
+    product = Product.objects.all()
+    customer = Customer.objects.all()
+
+    order_count = Order.objects.count()
+    print(order_count)
+
+    context = {'order': order, 'vendors': vendor,
+               'product': product, 'customers': customer, 'order_count': order_count}
+
+    return render(request, 'dash.html', context)
 
 
 def addOrderPage(request):
@@ -61,8 +73,11 @@ def orderPage(request):
     product = Product.objects.all()
     customer = Customer.objects.all()
 
+    prod = Product.objects.filter(product_name="Mobiles")
+    amount = Product.objects.values_list('price')
+
     context = {'order': order, 'vendors': vendor,
-               'products': product, 'customers': customer}
+               'product': product, 'customers': customer, 'amount': amount}
     return render(request, 'order.html', context)
 
 
