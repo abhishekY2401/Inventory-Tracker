@@ -96,9 +96,9 @@ WSGI_APPLICATION = 'inventorytracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'inventorydb',
+        'NAME': 'inventorytracker',
         'USER': 'dbadmin',
-        'PASSWORD': 'abhi123',
+        'PASSWORD': 'Abhiraj@123',
         'HOST': 'localhost',
         'PORT': '3306',
     }
