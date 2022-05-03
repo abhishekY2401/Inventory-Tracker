@@ -48,8 +48,10 @@
             <td>{{i.customer}}</td>
             <td>{{i.date}}</td>
             <td class="status">{{i.status}}</td>
-            <td>{{i.invoice_no}}</td>
-            <td>{{amount}}</td>
+            <td><a href="/dashboard/order/{{i.order_id}}">{{i.invoice_no}}</a></td>
+            <td>{{i.product.price}}</td>
+            <td><a href="/dashboard/order/edit/{{i.order_id}}">EDIT</a></td>
+            <td><a href="">DELETE</a></td>
           </tr>
         {% endfor %}
       </table>

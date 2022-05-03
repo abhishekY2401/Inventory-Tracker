@@ -1,5 +1,6 @@
 from itertools import count
 from math import prod
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from .forms import OrderForm
 from django.contrib.auth.decorators import login_required
@@ -73,21 +74,28 @@ def order_submission(request):
 
 
 def orderPage(request):
+    context = {}
+
     order = Order.objects.all()
-    vendor = Vendor.objects.all()
-    product = Product.objects.all()
-    customer = Customer.objects.all()
+    context['order'] = order
 
-    prod = Product.objects.filter(product_name="Mobiles")
-    amount = Product.objects.values_list('price')
-
-    context = {'order': order, 'vendors': vendor,
-               'product': product, 'customers': customer, 'amount': amount}
     return render(request, 'order.html', context)
 
 
 def detailedOrderPage(request, pk):
+    context = {}
+    
     order = Order.objects.get(order_id=pk)
-    context = {'order': order}
+    context['data'] = order
+    context['products'] = order.product.all()
 
     return render(request, 'orderDetails.html', context)
+
+def editOrder(request, pk):
+    context = {}
+
+    order = Order.objects.get(order_id=pk)
+    context['data'] = order
+    context['products'] = order.product.all()
+
+    return render(request, 'edit.html', context)

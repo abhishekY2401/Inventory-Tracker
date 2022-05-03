@@ -96,9 +96,15 @@ tr {
 th {
     font-size: 1.2rem;
     padding: 2rem;
+    text-align: center;
 }
 
 td {
     text-align: center;
     padding: 1rem 2rem;
+}
+
+td .edit,
+td .delete {
+    border: 2px solid #f45;
 }
