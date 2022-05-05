@@ -9,7 +9,7 @@
 {% block 'content' %}
     <h2>Order Details</h2>
     <a href={% url 'dashboard:order' %}>CANCEL</a>
-    <a href="/dashboard/order/edit/{{data.order_id}}">UPDATE</a>
+    <a href="/dashboard/order/{{data.order_id}}/edit/">UPDATE</a>
 
     <form>
         <div class="form-group row">

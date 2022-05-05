@@ -19,8 +19,10 @@ hr {
     color:#282828;
 }
 
-.add {
-    margin-top: -25px;
+.btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .add-orders {
@@ -31,8 +33,6 @@ hr {
     border-radius: 5px;
     font-size: 15px;
     font-weight: 800;
-    font-family: 'Vazirmatn', sans-serif;
-    margin-left: 80rem;
 }
 
 #orders {
@@ -69,9 +69,7 @@ hr {
     border-radius: 5px;
     font-size: 15px;
     font-weight: 800;
-    font-family: 'Vazirmatn', sans-serif;
     border: none;
-    margin-left: 1rem;
 }
 
 #filters > input:hover {
@@ -81,12 +79,10 @@ hr {
 table {
     border: 1px solid #181818;
     margin-top: 60px;
-    margin-left: 60px;
     border-collapse: collapse;
     text-align: left;
     overflow: hidden;
     background-color: #efefef;
-    padding: 2rem 5rem;
 }
 
 tr {

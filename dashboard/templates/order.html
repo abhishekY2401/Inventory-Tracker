@@ -2,6 +2,9 @@
 
 <head>
   <title>{% block title %}Orders{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="{% static '/css/order.css' %}" />
 </head>
@@ -10,7 +13,7 @@
 <div>
     {% include 'navdash.html' %}
 
-    <div class="warehouse-order">
+    <div class="warehouse-order container">
       <h2 id="orders">Orders</h2>
       <hr />
       <div id="filters">
@@ -22,11 +25,10 @@
           <option value="delivered">Delivered</option>
         </select>
 
+      <div class="btns">
         <input type="button" value="Filter" class="btn-filter"/>
-
-        <div class="add">
-          <a href={% url 'dashboard:addOrders' %} class="add-orders">Create Order</a>
-        </div>
+        <a href={% url 'dashboard:addOrders' %} class="add-orders">Create Order</a>
+      </div>
 
       </div>
 
@@ -48,9 +50,9 @@
             <td>{{i.customer}}</td>
             <td>{{i.date}}</td>
             <td class="status">{{i.status}}</td>
-            <td><a href="/dashboard/order/{{i.order_id}}">{{i.invoice_no}}</a></td>
+            <td><a href="/dashboard/order/{{i.order_id}}/invoice/">{{i.invoice_no}}</a></td>
             <td>{{i.product.price}}</td>
-            <td><a href="/dashboard/order/edit/{{i.order_id}}">EDIT</a></td>
+            <td><a href="/dashboard/order/{{i.order_id}}">EDIT</a></td>
             <td><a href="">DELETE</a></td>
           </tr>
         {% endfor %}
