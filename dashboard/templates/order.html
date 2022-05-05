@@ -40,7 +40,6 @@
           <th>Date</th>
           <th>Status</th>
           <th>Invoice Number</th>
-          <th>Amount</th>
         </tr>
 
         {% for i in order %}
@@ -50,10 +49,11 @@
             <td>{{i.customer}}</td>
             <td>{{i.date}}</td>
             <td class="status">{{i.status}}</td>
-            <td><a href="/dashboard/order/{{i.order_id}}/invoice/">{{i.invoice_no}}</a></td>
+            <td>{{i.invoice_no}}</td>
             <td>{{i.product.price}}</td>
             <td><a href="/dashboard/order/{{i.order_id}}">EDIT</a></td>
-            <td><a href="">DELETE</a></td>
+            <td><a href="/dashboard/order/{{i.order_id}}/delete">DELETE</a></td>
+            <td><a href="/dashboard/order/{{i.order_id}}/invoice/">VIEW INVOICE</a></td>
           </tr>
         {% endfor %}
       </table>

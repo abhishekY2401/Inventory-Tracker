@@ -106,6 +106,19 @@ def editOrder(request, pk):
 
     return render(request, 'edit.html', context)
 
+@login_required
+def deleteOrder(request, pk):
+
+    order = Order.objects.get(order_id=pk)
+    products = order.product.all()
+    cust = order.customer
+    vend = order.vendor
+    order.delete()
+    products.delete()
+    cust.delete()
+    vend.delete()
+
+    return redirect('dashboard:order')
 
 def render_to_pdf(template_src, context_dict={}):
     template = get_template(template_src)
