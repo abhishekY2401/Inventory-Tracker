@@ -1,5 +1,115 @@
+{% load static %} {% load bootstrap5 %}
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
+</head>
 
 {% block 'content' %}
-<h1>Order : {{order.order_id}}</h1>
-<a href={% url 'dashboard:order' %}></a>
+    <h2>Order Details</h2>
+    <a href={% url 'dashboard:order' %}>CANCEL</a>
+    <a href="/dashboard/order/{{data.order_id}}/edit/">UPDATE</a>
+
+    <form>
+        <div class="form-group row">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Order Id</label>
+          <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ data.order_id }}>
+          </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Status</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ data.status }}>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Invoice Number</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ data.invoice_no }}>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Date</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ data.date }}>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" value={{ data.vendor }}>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email Id</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" value={{ data.vendor.email_id }}>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ data.customer }}>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Phone Number</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ data.customer.phone_no }}>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email Id</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ data.customer.email_id }}>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ data.customer.address }}>
+            </div>
+        </div>
+        <div class="item-list">
+            {% if products %}
+                {% for prod in products %}
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Item</label>
+                        <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ prod.product_name }}>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Category</label>
+                        <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ prod.category }}>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Unit</label>
+                        <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ prod.unit }}>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Quantity</label>
+                        <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ prod.quantity }}>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Price</label>
+                        <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={{ prod.price }}>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %} 
+        </div>
+    </form>
+
+   
+
 {% endblock %}

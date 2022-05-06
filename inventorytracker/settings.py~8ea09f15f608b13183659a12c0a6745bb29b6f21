@@ -48,11 +48,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap5',
     'crispy_forms',
     'dashboard.apps.DashboardConfig',
     'register.apps.RegisterConfig',
     'homepage.apps.HomepageConfig',
-    'login.apps.LoginConfig'
+    'signin.apps.SigninConfig'
 ]
 
 MIDDLEWARE = [
@@ -83,9 +84,9 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/'
+SIGNIN_REDIRECT_URL = '/'
 
-LOGOUT_REDIRECT_URL = '/'
+SIGNOUT_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'inventorytracker.wsgi.application'
 
@@ -139,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),

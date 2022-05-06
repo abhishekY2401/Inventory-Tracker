@@ -1,13 +1,19 @@
-from itertools import count
-from math import prod
+
+from ast import Bytes
+from re import template
 from django.shortcuts import render, redirect
-from .forms import OrderForm
 from django.contrib.auth.decorators import login_required
 from .models import *
+from django.contrib import messages
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+from django.views import View
+from xhtml2pdf import pisa
 
 # Create your views here.
 
-
+@login_required
 def dashboardPage(request):
     order = Order.objects.all()
 
@@ -26,11 +32,11 @@ def dashboardPage(request):
 
     return render(request, 'dash.html', context)
 
-
+@login_required
 def addOrderPage(request):
     return render(request, 'addOrder.html')
 
-
+@login_required
 def order_submission(request):
     print("Form Data Submitted!")
 
@@ -71,22 +77,82 @@ def order_submission(request):
 
     return render(request, 'addOrder.html')
 
-
+@login_required
 def orderPage(request):
-    order = Order.objects.all()
-    vendor = Vendor.objects.all()
-    product = Product.objects.all()
-    customer = Customer.objects.all()
+    context = {}
 
+<<<<<<< HEAD
     amount = Product.objects.values_list('price')
+=======
+    order = Order.objects.all()
+    context['order'] = order
+>>>>>>> cea638c8ac2eeacea4f97275228aaaa7db96b333
 
-    context = {'order': order, 'vendors': vendor,
-               'product': product, 'customers': customer, 'amount': amount}
     return render(request, 'order.html', context)
 
-
+@login_required
 def detailedOrderPage(request, pk):
+    context = {}
+    
     order = Order.objects.get(order_id=pk)
-    context = {'order': order}
+    context['data'] = order
+    context['products'] = order.product.all()
 
     return render(request, 'orderDetails.html', context)
+
+@login_required
+def editOrder(request, pk):
+    context = {}
+
+    order = Order.objects.get(order_id=pk)
+    context['data'] = order
+    context['products'] = order.product.all()
+
+    return render(request, 'edit.html', context)
+
+@login_required
+def deleteOrder(request, pk):
+
+    order = Order.objects.get(order_id=pk)
+    products = order.product.all()
+    cust = order.customer
+    vend = order.vendor
+    order.delete()
+    products.delete()
+    cust.delete()
+    vend.delete()
+
+    return redirect('dashboard:order')
+
+def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
+
+class GeneratePDF(View):
+    def get(self, request, *args, **kwargs):
+
+        template = get_template('invoice.html')
+        context = {
+            "invoice_no": 123,
+            "customer_name": "Abhishek Yadav",
+            "amount": 1389.98,
+            "today": "Today",
+        }
+        html = template.render(context)
+        pdf = render_to_pdf('invoice.html', context)
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Invoice_%s.pdf" %("12341231")
+            content = "inline; filename='%s'" %(filename)
+            download = request.GET.get("download")
+            if download:
+                content = "attachment; filename='%s'" %(filename)
+            response['Content-Disposition'] = content
+            return response
+        return HttpResponse("Not found")
+
