@@ -2,25 +2,56 @@
 
 <head>
   <title>{% block title %}Dashboard{% endblock %}</title>
+  <link rel="stylesheet" href="{% static '/css/navdash.css' %}" />
   <link rel="stylesheet" href="{% static '/css/dash.css' %}" />
   <link rel="stylesheet" href="{% static '/css/home.css' %}" />
 </head>
+
+{% block content %}
 <body>
   {% include 'navdash.html' %}
   <div class="main-dash">
-    {% block content %}
-    <div class="Total Imports">
+    <div class="total-imports">
       <p>Total Imports</p>
-      <p>{{order_count}}</p>
+      <p id="order_count">{{order_count}}</p>
     </div>
-    <div class="Imports Collected">
+    <div class="imports-collected">
       <p>Current Imports</p>
-      <p>{{count_delivered}}</p>
+      <p id="order_delivered">{{delivered_count}}</p>
     </div>
-    <div class="Imports Pending">
+    <div class="imports-pending">
       <p>Pending Imports</p>
-      <p>{{count_pending}}</p>
+      <p id="order_pending">{{pending_count}}</p>
     </div>
-    {% endblock %}
+  </div>
+  <div class="space-orders">
+    <div></div>
+    <div class="recent-orders">
+      <h2>Recent Orders</h2>
+      <div>
+        <table>
+          <tr>
+            <th>Order ID</th>
+            <th>Vendor</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Invoice Number</th>
+          </tr>
+  
+          {% for i in order %}
+            <tr>
+              <td><a href="/dashboard/order/{{i.order_id}}">{{i.order_id}}</a></td>
+              <td>{{i.vendor}}</td>
+              <td>{{i.customer}}</td>
+              <td>{{i.date}}</td>
+              <td class="status">{{i.status}}</td>
+              <td>{{i.invoice_no}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
   </div>
 </body>
+{% endblock %}

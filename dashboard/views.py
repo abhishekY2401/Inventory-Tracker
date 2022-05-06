@@ -15,14 +15,14 @@ def dashboardPage(request):
     print(order_count)
 
     delivered_order = Order.objects.filter(status="delivered")
-    count_delivered = delivered_order.count()
-    print(count_delivered)
+    delivered_count = delivered_order.count()
+    print(delivered_count)
 
     pending_order = Order.objects.filter(status="pending")
-    count_pending = pending_order.count()
-    print(count_pending)
+    pending_count = pending_order.count()
+    print(pending_count)
 
-    context = {'order': order, 'order_count': order_count, 'deliver_order': count_delivered, 'pending_order': count_pending}
+    context = {'order': order, 'order_count': order_count, 'delivered_count': delivered_count, 'pending_count': pending_count}
 
     return render(request, 'dash.html', context)
 
@@ -78,7 +78,6 @@ def orderPage(request):
     product = Product.objects.all()
     customer = Customer.objects.all()
 
-    prod = Product.objects.filter(product_name="Mobiles")
     amount = Product.objects.values_list('price')
 
     context = {'order': order, 'vendors': vendor,
