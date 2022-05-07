@@ -1,5 +1,6 @@
 
 from ast import Bytes
+import random
 from re import template
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -10,10 +11,15 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.views import View
 from xhtml2pdf import pisa
+from django.http import JsonResponse
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from datetime import date
+
 
 # Create your views here.
 
-@login_required
 def dashboardPage(request):
     order = Order.objects.all()
 
@@ -32,11 +38,9 @@ def dashboardPage(request):
 
     return render(request, 'dash.html', context)
 
-@login_required
 def addOrderPage(request):
     return render(request, 'addOrder.html')
 
-@login_required
 def order_submission(request):
     print("Form Data Submitted!")
 
@@ -77,7 +81,6 @@ def order_submission(request):
 
     return render(request, 'addOrder.html')
 
-@login_required
 def orderPage(request):
     context = {}
 
@@ -86,7 +89,6 @@ def orderPage(request):
 
     return render(request, 'order.html', context)
 
-@login_required
 def detailedOrderPage(request, pk):
     context = {}
     
@@ -96,7 +98,6 @@ def detailedOrderPage(request, pk):
 
     return render(request, 'orderDetails.html', context)
 
-@login_required
 def editOrder(request, pk):
     context = {}
 
@@ -106,7 +107,6 @@ def editOrder(request, pk):
 
     return render(request, 'edit.html', context)
 
-@login_required
 def deleteOrder(request, pk):
 
     order = Order.objects.get(order_id=pk)
@@ -131,11 +131,19 @@ def render_to_pdf(template_src, context_dict={}):
 
 class GeneratePDF(View):
     def get(self, request, pk, *args, **kwargs):
+
         context = {}
         template = get_template('invoice.html')
-
         order = Order.objects.get(order_id=pk)
-        context['order'] = order
+        products = order.product.all()
+        today = date.today()
+
+        context["invoice"] = order.invoice_no
+        context["name"] = order.customer
+        context["phone"] = order.customer.phone_no
+        context["address"] = order.customer.address
+        context["date"] = today
+        context["products"] = products
 
         html = template.render(context)
         pdf = render_to_pdf('invoice.html', context)
@@ -150,3 +158,34 @@ class GeneratePDF(View):
             return response
         return HttpResponse("Not found")
 
+
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'dash.html', {})
+
+
+def get_data(request, *args, **kwargs):
+
+    data = {
+        "warehouse_space": "5000 sq.ft",
+        "fixed_quantity": 30000
+    }
+    return JsonResponse(data)
+
+
+class ChartData(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        data = {}
+
+        orders = Order.objects.all()
+
+        for id in orders:
+            order = Order.objects.get(order_id=id.order_id)
+            data['order'] = order
+            data['products'] = order.product.all()
+            print(data)
+
+        return Response(data)
