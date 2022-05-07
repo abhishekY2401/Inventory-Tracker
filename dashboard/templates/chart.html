@@ -39,7 +39,7 @@
         <script>
             const ctx = document.getElementById('myChart').getContext('2d');
             const myChart = new Chart(ctx, {
-                type: 'pie',
+                type: 'doughnut',
                 data: {
                     labels: ['Electronics', 'Dairy', 'Vegetables', 'Sports', 'Chemicals', 'Empty'],
                     datasets: [{
@@ -50,7 +50,7 @@
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(255, 206, 86, 0.2)',
                             'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(253, 202, 255, 0.2)',
                             'rgba(255, 200, 255, 0.2)'
                         ],
                         borderColor: [
@@ -68,9 +68,7 @@
                     responsive: false,
                     maintainAspectRatio: true,
                     scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                        
                     }
                 }
             });
