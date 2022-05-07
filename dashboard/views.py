@@ -81,12 +81,8 @@ def order_submission(request):
 def orderPage(request):
     context = {}
 
-<<<<<<< HEAD
-    amount = Product.objects.values_list('price')
-=======
     order = Order.objects.all()
     context['order'] = order
->>>>>>> cea638c8ac2eeacea4f97275228aaaa7db96b333
 
     return render(request, 'order.html', context)
 
@@ -134,15 +130,13 @@ def render_to_pdf(template_src, context_dict={}):
     return None
 
 class GeneratePDF(View):
-    def get(self, request, *args, **kwargs):
-
+    def get(self, request, pk, *args, **kwargs):
+        context = {}
         template = get_template('invoice.html')
-        context = {
-            "invoice_no": 123,
-            "customer_name": "Abhishek Yadav",
-            "amount": 1389.98,
-            "today": "Today",
-        }
+
+        order = Order.objects.get(order_id=pk)
+        context['order'] = order
+
         html = template.render(context)
         pdf = render_to_pdf('invoice.html', context)
         if pdf:

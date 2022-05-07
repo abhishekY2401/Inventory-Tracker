@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>Title</title>
+        <title>Invoice {{invoice_no}}</title>
         <style type="text/css">
             body {
                 font-weight: 200;
@@ -39,12 +39,12 @@
     <body>
         <div class='wrapper'>
             <div class='header'>
-                <p class='title'>Invoice # {{ invoice_no }}</p>
+                <p class='title'>Invoice # {{ order.invoice_no }}</p>
             </div>
         <div>
         <div class='details'>
-            Bill to: {{ customer_name }}<br/>
-            Amount:  {{ amount }}<br/>
+            Bill to: {{ order.customer_name }}<br/>
+            Amount:  {{ order.amount }}<br/>
             Date: {{ today }}
             <hr class='hrItem' />
         </div>
