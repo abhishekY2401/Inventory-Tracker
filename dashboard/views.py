@@ -15,11 +15,11 @@ from django.http import JsonResponse
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from datetime import date
 
 
 # Create your views here.
 
-@login_required
 def dashboardPage(request):
     order = Order.objects.all()
 
@@ -38,11 +38,9 @@ def dashboardPage(request):
 
     return render(request, 'dash.html', context)
 
-@login_required
 def addOrderPage(request):
     return render(request, 'addOrder.html')
 
-@login_required
 def order_submission(request):
     print("Form Data Submitted!")
 
@@ -83,17 +81,14 @@ def order_submission(request):
 
     return render(request, 'addOrder.html')
 
-@login_required
 def orderPage(request):
     context = {}
 
-    amount = Product.objects.values_list('price')
     order = Order.objects.all()
     context['order'] = order
 
     return render(request, 'order.html', context)
 
-@login_required
 def detailedOrderPage(request, pk):
     context = {}
     
@@ -103,7 +98,6 @@ def detailedOrderPage(request, pk):
 
     return render(request, 'orderDetails.html', context)
 
-@login_required
 def editOrder(request, pk):
     context = {}
 
@@ -113,7 +107,6 @@ def editOrder(request, pk):
 
     return render(request, 'edit.html', context)
 
-@login_required
 def deleteOrder(request, pk):
 
     order = Order.objects.get(order_id=pk)
@@ -137,15 +130,21 @@ def render_to_pdf(template_src, context_dict={}):
     return None
 
 class GeneratePDF(View):
-    def get(self, request, *args, **kwargs):
+    def get(self, request, pk, *args, **kwargs):
 
+        context = {}
         template = get_template('invoice.html')
-        context = {
-            "invoice_no": 123,
-            "customer_name": "Abhishek Yadav",
-            "amount": 1389.98,
-            "today": "Today",
-        }
+        order = Order.objects.get(order_id=pk)
+        products = order.product.all()
+        today = date.today()
+
+        context["invoice"] = order.invoice_no
+        context["name"] = order.customer
+        context["phone"] = order.customer.phone_no
+        context["address"] = order.customer.address
+        context["date"] = today
+        context["products"] = products
+
         html = template.render(context)
         pdf = render_to_pdf('invoice.html', context)
         if pdf:

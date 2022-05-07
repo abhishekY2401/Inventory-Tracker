@@ -3,18 +3,29 @@
 <head>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="{% static '/css/navdash.css' %}" />
+  <style type="text/css">
+    body {
+      font-weight: 200;
+      font-size: 14px;
+    }
+    .links {
+      display: flex;
+      align-items: center;
+      margin-left: 5vw;
+    }
+  </style>
 </head>
 
 
 {% block content %}
 <div class="dash-navbar">
   <a href={% url 'homepage' %} id="logo">EasyInvent<span id="dot">.</span></a>
-  <ul>
+  <ul class="links">
     <li><a href={% url 'dashboard' %} id="dash">Dashboard</a></li>
     <li><a href={% url 'dashboard:order' %} id="order">Order</a></li>
 
     {% if user.is_authenticated %}
-       <li>
+       <li class>
          <a href="{% url 'homepage' %}">Logout</a>
        </li>
     {% endif %}

@@ -1,7 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>Title</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+        <title>Invoice</title>
         <style type="text/css">
             body {
                 font-weight: 200;
@@ -10,14 +13,20 @@
             .header {
                 font-size: 20px;
                 font-weight: 100;
-                text-align: center;
                 color: #007cae;
+                display: flex;
             }
             .title {
+                text-align: left;
                 font-size: 22px;
                 font-weight: 100;
-               /* text-align: right;*/
-               padding: 10px 20px 0px 20px;  
+                padding: 10px 20px 0px 20px;  
+            }
+            .date {
+                text-align: right;
+                font-size: 22px;
+                font-weight: 100;
+                padding: 10px 20px 0px 20px;
             }
             .title span {
                 color: #007cae;
@@ -25,7 +34,6 @@
             .details {
                 padding: 10px 20px 0px 20px;
                 text-align: left !important;
-                /*margin-left: 40%;*/
             }
             .hrItem {
                 border: none;
@@ -39,14 +47,37 @@
     <body>
         <div class='wrapper'>
             <div class='header'>
-                <p class='title'>Invoice # {{ invoice_no }}</p>
+                <p class='title'>Invoice #{{ invoice }}</p>
+                <p class="date">Invoice Date : {{ date }}</p>
             </div>
         <div>
         <div class='details'>
-            Bill to: {{ customer_name }}<br/>
-            Amount:  {{ amount }}<br/>
-            Date: {{ today }}
+            Billed to <br />
+            Name: {{ name }}<br/>
+            Phone Number: {{ phone }}<br/>
+            Address: {{ address }}
             <hr class='hrItem' />
+        </div>
+        <div class="table">
+            <table class="table">
+                <tr>
+                    <th>Item</th>
+                    <th>Category</th>
+                    <th>Unit</th>
+                    <th>Qty</th>
+                    <th>Amount</th>
+                </tr>
+
+                <tr>
+                    {% for prod in products %}
+                       <td>{{ prod.product_name }}</td>
+                       <td>{{ prod.category }}</td>
+                       <td>{{ prod.unit }}</td>
+                       <td>{{ prod.quantity }}</td>
+                       <td>{{ prod.price }}</td>
+                    {% endfor %}
+                </tr>
+            </table>
         </div>
     </div>
     </body>

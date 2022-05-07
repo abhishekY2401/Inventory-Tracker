@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 from .forms import CreateUserForm
 
-@login_required
 def registerPage(request):
     form = CreateUserForm()
 
