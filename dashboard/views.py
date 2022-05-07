@@ -1,5 +1,6 @@
 
 from ast import Bytes
+import random
 from re import template
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -10,6 +11,11 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.views import View
 from xhtml2pdf import pisa
+from django.http import JsonResponse
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
 
 # Create your views here.
 
@@ -156,3 +162,34 @@ class GeneratePDF(View):
             return response
         return HttpResponse("Not found")
 
+
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'dash.html', {})
+
+
+def get_data(request, *args, **kwargs):
+
+    data = {
+        "warehouse_space": "5000 sq.ft",
+        "fixed_quantity": 30000
+    }
+    return JsonResponse(data)
+
+
+class ChartData(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        data = {}
+
+        orders = Order.objects.all()
+
+        for id in orders:
+            order = Order.objects.get(order_id=id.order_id)
+            data['order'] = order
+            data['products'] = order.product.all()
+            print(data)
+
+        return Response(data)

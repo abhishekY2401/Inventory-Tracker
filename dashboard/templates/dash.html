@@ -8,7 +8,27 @@
   <link rel="stylesheet" href="{% static '/css/navdash.css' %}" />
   <link rel="stylesheet" href="{% static '/css/dash.css' %}" />
   <link rel="stylesheet" href="{% static '/css/home.css' %}" />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
+
+{% block jquery %}
+<script>
+  var endpoint = '/dashboard/api/data'
+
+  $.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data) {
+      console.log(data)
+    },
+    error: function(error_data){
+      console.log("error")
+      console.log(error_data)
+    }
+  })
+</script>
+{% endblock %}
+
 
 {% block content %}
 <body>
@@ -26,16 +46,24 @@
       <p>Pending Imports</p>
       <p id="order_pending">{{pending_count}}</p>
     </div>
+<<<<<<< HEAD
   </div>
 <<<<<<< HEAD
   <div class="space-orders">
     <div></div>
 =======
   <div class="space-orders container">
+=======
+>>>>>>> 18a4b8e (made pie chart for space in the warehouse on dashboard)
     <div>
-      <p>Items stored in the warehouse</p>
+      {% include 'chart.html' %}
     </div>
+<<<<<<< HEAD
 >>>>>>> cea638c8ac2eeacea4f97275228aaaa7db96b333
+=======
+  </div>
+  <div class="space-orders container">
+>>>>>>> 18a4b8e (made pie chart for space in the warehouse on dashboard)
     <div class="recent-orders">
       <h2>Recent Orders</h2>
       <div>
@@ -55,7 +83,9 @@
               <td>{{i.vendor}}</td>
               <td>{{i.customer}}</td>
               <td>{{i.date}}</td>
-              <td class="status">{{i.status}}</td>
+              <td class="status">
+                <h6 class="{{i.status}}">{{i.status}}</h6>
+              </td>
               <td>{{i.invoice_no}}</td>
             </tr>
           {% endfor %}

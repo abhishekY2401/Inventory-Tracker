@@ -7,58 +7,50 @@
 
 .main-dash {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .total-imports {
-    margin-top: 10rem;
-    margin-left: 5rem;
     width: 16%;
-    height: 20%;
-    text-align: center;
-    font-size: 1.68rem;
+    height: 14rem;
+    font-size: 1.8rem;
     background-color: #f67;
     color: white;
-    padding: 50px;
     border-radius: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .imports-collected {
-    margin-top: 10rem;
     width: 16%;
-    height: 20%;
-    text-align: center;
+    height: 14rem;
     font-size: 1.8rem;
     background-color: #1195e7;
     color: white;
-    padding: 50px;
     border-radius: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .imports-pending {
-    margin-top: 10rem;
-    margin-right: 14rem;
     width: 16%;
-    height: 20%;
-    text-align: center;
+    height: 14rem;
     font-size: 1.8rem;
     background-color: #11eba2;
     color: white;
-    padding: 50px;
     border-radius: 20px;
-}
-
-#order_count {
-    margin-top: 25px;
-}
-
-#order_delivered {
-    margin-top: 25px;
-}
-
-#order_pending {
-    margin-top: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 table {
@@ -91,4 +83,22 @@ th {
 td {
     text-align: center;
     padding: 1rem 2rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+.pending {
+    padding: 1rem;
+    background-color: #f67;
+    color: white;
+    border-radius: 20px;
+}
+
+.delivered {
+    padding: 1rem;
+    background-color: #6690ff;
+    color: white;
+    border-radius: 20px;
 }
