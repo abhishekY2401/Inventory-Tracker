@@ -87,12 +87,9 @@ def order_submission(request):
 def orderPage(request):
     context = {}
 
-<<<<<<< HEAD
     amount = Product.objects.values_list('price')
-=======
     order = Order.objects.all()
     context['order'] = order
->>>>>>> cea638c8ac2eeacea4f97275228aaaa7db96b333
 
     return render(request, 'order.html', context)
 
