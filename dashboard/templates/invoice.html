@@ -16,7 +16,10 @@
                 align-items: center;
                 justify-content: space-between;
             }
-
+            td, th {
+                font-weight: 600;
+                text-align: center;
+            }
             .header {
                 font-size: 20px;
                 font-weight: 100;
@@ -118,7 +121,7 @@
                        <td>{{ prod.quantity }}</td>
                        <td>{{ prod.price }}</td>
                     {% endfor %}
-                    <td></td>
+                    <td>{{ category.handling_charges }}</td>
                     <td>{{ category.import_duty }}</td>
                     <td>{{ category.cgst }}</td>
                 </tr>

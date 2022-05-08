@@ -140,23 +140,28 @@ class ViewInvoice(View):
         taxes = {
             "electronics": {
                 "import_duty": "30%",
-                "cgst": "19%"
+                "cgst": "19%",
+                "handling_charges": "6%"
             },
             "chemicals": {
                 "import_duty": "20%",
-                "cgst": "5%" 
+                "cgst": "5%",
+                "handling_charges": "2%"
             },
             "hazardous chemicals": {
                 "import_duty": "25%",
-                "cgst": "12%" 
+                "cgst": "12%",
+                "handling_charges": "3%"
             },
             "automobiles": {
                 "import_duty": "15%",
-                "cgst": "18%" 
+                "cgst": "18%",
+                "handling_charges": "6%" 
             },
             "clothes": {
                 "import_duty": "5%",
-                "cgst": "5%" 
+                "cgst": "5%",
+                "handling_charges": "4%"
             },
         }
 
