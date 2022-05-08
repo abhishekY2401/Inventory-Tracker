@@ -199,6 +199,34 @@ class GeneratePDF(View):
     def get(self, request, pk, *args, **kwargs):
 
         context = {}
+        taxes = {
+            "electronics": {
+                "import_duty": "30%",
+                "cgst": "19%",
+                "handling_charges": "6%"
+            },
+            "chemicals": {
+                "import_duty": "20%",
+                "cgst": "5%",
+                "handling_charges": "2%"
+            },
+            "hazardous chemicals": {
+                "import_duty": "25%",
+                "cgst": "12%",
+                "handling_charges": "3%"
+            },
+            "automobiles": {
+                "import_duty": "15%",
+                "cgst": "18%",
+                "handling_charges": "6%" 
+            },
+            "clothes": {
+                "import_duty": "5%",
+                "cgst": "5%",
+                "handling_charges": "4%"
+            },
+        }
+
         template = get_template('invoice.html')
         order = Order.objects.get(order_id=pk)
         products = order.product.all()
@@ -213,6 +241,14 @@ class GeneratePDF(View):
         context["address"] = order.customer.address
         context["date"] = today
         context["products"] = products
+
+        for i in products:
+            category = i.category
+
+        # CALCULATE FINAL AMOUNT BY ADDING handling charges, import duty
+        for key in list(taxes.keys()):
+            if key == category:
+                context["category"] = taxes.get(key)
 
         html = template.render(context)
         pdf = render_to_pdf('invoicePdf.html', context)

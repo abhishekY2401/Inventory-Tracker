@@ -28,6 +28,9 @@
                 font-weight: 100;
                 padding: 10px 20px 0px 20px;
             }
+            td, th {
+                text-align: center;
+            }
             .title span {
                 color: #007cae;
             }
@@ -63,19 +66,25 @@
                 <tr>
                     <th>Item</th>
                     <th>Category</th>
-                    <th>Unit</th>
                     <th>Qty</th>
                     <th>Amount</th>
+                    <th>Handling Charges</th>
+                    <th>Import Duty</th>
+                    <th>CGST</th>
+                    <th>Total Amount</th>
                 </tr>
 
                 <tr>
                     {% for prod in products %}
                        <td>{{ prod.product_name }}</td>
                        <td>{{ prod.category }}</td>
-                       <td>{{ prod.unit }}</td>
                        <td>{{ prod.quantity }}</td>
                        <td>{{ prod.price }}</td>
                     {% endfor %}
+                    <td>{{ category.handling_charges }}</td>
+                    <td>{{ category.import_duty }}</td>
+                    <td>{{ category.cgst }}</td>
+                    <td>5000</td>
                 </tr>
             </table>
         </div>
