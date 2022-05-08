@@ -22,7 +22,7 @@ class Customer(models.Model):
 class Product(models.Model):
     product_name = models.CharField(max_length=255, null=True, blank=True)
     category = models.CharField(max_length=255, null=True, blank=True)
-    unit = models.CharField(max_length=255, null=True)
+    weight = models.CharField(max_length=255, null=True)
     quantity = models.IntegerField("Quantity")
     price = models.FloatField("Price", null=True)
 

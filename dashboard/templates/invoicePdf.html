@@ -10,60 +10,30 @@
                 font-weight: 200;
                 font-size: 14px;
             }
-            .wrapper {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-
             .header {
                 font-size: 20px;
                 font-weight: 100;
-                color: #282828;
+                color: #007cae;
                 display: flex;
             }
             .title {
                 text-align: left;
                 font-size: 22px;
-                font-weight: 700;
+                font-weight: 100;
                 padding: 10px 20px 0px 20px;  
             }
             .date {
                 text-align: right;
                 font-size: 22px;
                 font-weight: 100;
-                margin-left: 100px;
-                font-weight: 400;
                 padding: 10px 20px 0px 20px;
             }
             .title span {
-                color: #282828;
+                color: #007cae;
             }
-
-            #print {
-                text-decoration: none;
-                padding: 10px;
-                background-color: #007bff;
-                color: white;
-                font-size: 1rem;
-                margin-right: 2rem;
-                font-weight: 500;
-                border-radius: 10px;
-            }
-            .vendor-customer {
-                padding: 10px 20px 0px 20px;
-                text-align: left !important;
-                font-weight: 300;
-                margin-top: 30px;
-            }
-
             .details {
                 padding: 10px 20px 0px 20px;
                 text-align: left !important;
-                font-weight: 300;
-                margin-left: 16.2vw;
-                margin-top: 30px;
             }
             .hrItem {
                 border: none;
@@ -80,47 +50,32 @@
                 <p class='title'>Invoice #{{ invoice }}</p>
                 <p class="date">Invoice Date : {{ date }}</p>
             </div>
-
-            <a href="/dashboard/order/{{id}}/invoice/pdf" id="print">Print</a>
-        </div>
-        <div class="vendor-customer">
-            <div class="vendor-details">
-                Name: {{ vendor_name }}<br/>
-                Email ID: {{ vendor_email }}<br/>
-            </div>
-            <div class='details'>
-                Billed to <br />
-                Name: {{ name }}<br/>
-                Phone Number: {{ phone }}<br/>
-                Address: {{ address }}
-                <hr class='hrItem' />
-            </div>
+        <div>
+        <div class='details'>
+            Billed to <br />
+            Name: {{ name }}<br/>
+            Phone Number: {{ phone }}<br/>
+            Address: {{ address }}
+            <hr class='hrItem' />
         </div>
         <div class="table">
             <table class="table">
                 <tr>
                     <th>Item</th>
                     <th>Category</th>
-                    <th>Weight</th>
+                    <th>Unit</th>
                     <th>Qty</th>
                     <th>Amount</th>
-                    <th>Handling Charges</th>
-                    <th>Import Duty</th>
-                    <th>CGST</th>
-                    <th>Total Amount</th>
                 </tr>
 
                 <tr>
                     {% for prod in products %}
                        <td>{{ prod.product_name }}</td>
                        <td>{{ prod.category }}</td>
-                       <td>{{ prod.weight }}</td>
+                       <td>{{ prod.unit }}</td>
                        <td>{{ prod.quantity }}</td>
                        <td>{{ prod.price }}</td>
                     {% endfor %}
-                    <td></td>
-                    <td>{{ category.import_duty }}</td>
-                    <td>{{ category.cgst }}</td>
                 </tr>
             </table>
         </div>

@@ -16,6 +16,7 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from datetime import date
+import random
 
 
 # Create your views here.
@@ -44,6 +45,9 @@ def addOrderPage(request):
 def order_submission(request):
     print("Form Data Submitted!")
 
+    invoice_no = random.randint(1000, 9999)
+    print(invoice_no)
+
     if request.method == 'POST':
         vendor = Vendor()
         vendor.vendor_name = request.POST.get('vendor-name')
@@ -69,7 +73,7 @@ def order_submission(request):
         order.order_id = request.POST.get('order-id')
         order.date = request.POST.get('date')
         order.status = request.POST.get('status')
-        order.invoice_no = request.POST.get('invoice_no')
+        order.invoice_no = invoice_no
         order.save()
 
         order.product.add(product)
@@ -129,7 +133,64 @@ def render_to_pdf(template_src, context_dict={}):
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
 
+class ViewInvoice(View):
+
+    def get(self, request, pk, *args, **kwargs):
+
+        taxes = {
+            "electronics": {
+                "import_duty": "30%",
+                "cgst": "19%"
+            },
+            "chemicals": {
+                "import_duty": "20%",
+                "cgst": "5%" 
+            },
+            "hazardous chemicals": {
+                "import_duty": "25%",
+                "cgst": "12%" 
+            },
+            "automobiles": {
+                "import_duty": "15%",
+                "cgst": "18%" 
+            },
+            "clothes": {
+                "import_duty": "5%",
+                "cgst": "5%" 
+            },
+        }
+
+        context = {}
+        template = get_template('invoice.html')
+        order = Order.objects.get(order_id=pk)
+        products = order.product.all()
+        today = date.today()
+
+        context["id"] = pk
+        context["vendor_name"] = order.vendor
+        context["vendor_email"] = order.vendor.email_id
+        context["invoice"] = order.invoice_no
+        context["name"] = order.customer
+        context["phone"] = order.customer.phone_no
+        context["address"] = order.customer.address
+        context["date"] = today
+        context["products"] = products
+
+        for i in products:
+            category = i.category
+
+        # CALCULATE FINAL AMOUNT BY ADDING handling charges, import duty
+        for key in list(taxes.keys()):
+            if key == category:
+                context["category"] = taxes.get(key)
+                
+        print(taxes.get(key))
+
+        return render(request, "invoice.html", context)
+
+
 class GeneratePDF(View):
+
     def get(self, request, pk, *args, **kwargs):
 
         context = {}
@@ -138,6 +199,9 @@ class GeneratePDF(View):
         products = order.product.all()
         today = date.today()
 
+        context["id"] = pk
+        context["vendor_name"] = order.vendor
+        context["vendor_email"] = order.vendor.email_id
         context["invoice"] = order.invoice_no
         context["name"] = order.customer
         context["phone"] = order.customer.phone_no
@@ -146,7 +210,7 @@ class GeneratePDF(View):
         context["products"] = products
 
         html = template.render(context)
-        pdf = render_to_pdf('invoice.html', context)
+        pdf = render_to_pdf('invoicePdf.html', context)
         if pdf:
             response = HttpResponse(pdf, content_type='application/pdf')
             filename = "Invoice_%s.pdf" %("12341231")
