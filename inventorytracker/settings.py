@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import django_heroku
+django_heroku.settings(locals())
 from pathlib import Path
 import os
 import dotenv
@@ -99,7 +101,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'inventorytracker',
-        'USER': 'dbadmin',
+        'USER': 'abhishek',
         'PASSWORD': 'Abhiraj@123',
         'HOST': 'localhost',
         'PORT': '3306',
