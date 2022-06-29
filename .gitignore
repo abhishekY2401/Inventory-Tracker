@@ -5,4 +5,5 @@ vars
 __pycache__
 migrations
 .idea
+.env
 /inventorytracker/settings.py
