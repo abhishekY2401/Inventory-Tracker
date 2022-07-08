@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+.warehouse-order {
+    width: 100%;
+    height: 200px;
+}
+
+hr {
+    width: 87rem;
+    margin-left: 3rem;
+    margin-top: 30px;
+    color:#282828;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-orders {
+    text-decoration: none;
+    padding: 10px;
+    color: #fff;
+    background-color: rgb(10, 248, 109);
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+#orders {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 40px;
+    font-family: 'Oswald', sans-serif;
+    color: #282828;
+}
+
+#filters {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.date-input,
+.id-text,
+.options {
+    width: 20%;
+    padding: 8px 10px;
+    margin: 8px 0;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    font-weight: 600;
+}
+
+.btn-filter {
+    text-decoration: none;
+    padding: 9px;
+    color: #fff;
+    background-color: rgb(10, 248, 109);
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 800;
+    border: none;
+}
+
+#filters > input:hover {
+    border: 3px solid #555;
+}
+
+table {
+    border: 1px solid #181818;
+    margin-top: 60px;
+    border-collapse: collapse;
+    text-align: left;
+    overflow: hidden;
+    background-color: #efefef;
+}
+
+tr {
+    border-bottom: 1px solid #282828;
+}
+
+th {
+    font-size: 1.2rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+    padding: 1rem 2rem;
+}
+
+td .edit,
+td .delete {
+    border: 2px solid #f45;
+}
